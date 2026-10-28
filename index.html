@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Horarios Cayena</title>
+</head>
+<body style="font-family:system-ui,sans-serif;background:#f4f5ef;color:#1d2420;padding:24px">
+<p id="msg">Cargando Horarios Cayena…</p>
+<script>
+// Página de entrada: trae la app (pantalla y datos) desde la planilla HORARIOS CAYENA.
+var API_URL="https://script.google.com/macros/s/AKfycbx24gYNObwKhBsBH51WjxWMnvHiut8y_vG_I52lz4z1WvxugHHDv0Fz3kshePya2xvVSQ/exec";
+fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({fn:"api_html",args:[]}),credentials:"omit",redirect:"follow"})
+  .then(function(r){return r.json()})
+  .then(function(j){if(!j||!j.ok)throw new Error(j&&j.error);document.open();document.write(j.data);document.close()})
+  .catch(function(){document.getElementById("msg").innerHTML='No se pudo cargar. Revisá internet y <a href="">probá de nuevo</a>.'});
+</script>
+</body>
+</html>
